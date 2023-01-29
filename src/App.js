@@ -1,13 +1,39 @@
-import './App.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import React from "react";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+import About from "./routes/about";
+import Portfolio from "./routes/portfolio";
+import Contact from "./routes/contact";
+import Resume from "./routes/resume";
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <About />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
+  },
+  {
+    path: "/portfolio",
+    element: <Portfolio />,
+  },
+  {
+    path: "/resume",
+    element: <Resume />,
+  },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Footer />
-    </div>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
   );
 }
 
