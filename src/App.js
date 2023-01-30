@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  createBrowserRouter,
+  createHashRouter,
   RouterProvider,
 } from "react-router-dom";
 
@@ -10,7 +10,8 @@ import Contact from "./routes/contact";
 import Resume from "./routes/resume";
 
 
-const router = createBrowserRouter([
+
+const router = createHashRouter([
   {
     path: "/",
     element: <About />,
