@@ -1,12 +1,10 @@
 import React from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+
 import Project from "../components/Project";
 
 function Portfolio() {
   return (
     <div>
-      <Header />
       <h1>Portfolio</h1>
       <div className="card-group">
         <Project
@@ -36,7 +34,7 @@ function Portfolio() {
           image="https://github.com/druharo/WEATHERAPP/raw/main/weatherapp.png"
           github="https://github.com/druharo/WEATHERAPP"
         />
-        
+
         <Project
           name="go-aware"
           image="https://github.com/Nwsheats/Go-Aware/raw/main/assets/map-dashboard.png"
@@ -44,7 +42,6 @@ function Portfolio() {
           deployed="https://go-aware.herokuapp.com/"
         />
       </div>
-      <Footer />
     </div>
   );
 }

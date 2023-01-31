@@ -1,0 +1,345 @@
+diff --git a/src/App.js b/src/App.js
+index 4923569..2623e5f 100644
+--- a/src/App.js
++++ b/src/App.js
+@@ -1,41 +1,40 @@
+-import React from "react";
+-import {
+-  createBrowserRouter,
+-  RouterProvider,
+-} from "react-router-dom";
++import * as React from "react";
++import { Routes, Route, Link } from "react-router-dom";
+ 
+ import About from "./routes/about";
+ import Portfolio from "./routes/portfolio";
+ import Contact from "./routes/contact";
+ import Resume from "./routes/resume";
++import Layout from "./components/Layout";
+ 
+-
+-
+-const router = createBrowserRouter([
+-  {
+-    path: "/",
+-    element: <About />,
+-  },
+-  {
+-    path: "/contact",
+-    element: <Contact />,
+-  },
+-  {
+-    path: "/portfolio",
+-    element: <Portfolio />,
+-  },
+-  {
+-    path: "/resume",
+-    element: <Resume />,
+-  },
+-]);
+-
+-function App() {
++export default function App() {
+   return (
+-    <React.StrictMode>
+-      <RouterProvider router={router} />
+-    </React.StrictMode>
++    <div>
++      <Routes>
++        <Route path="/" element={<Layout />}>
++          <Route index element={<About />} />
++          <Route path="contact" element={<Contact />} />
++          <Route path="portfolio" element={<Portfolio />} />
++          <Route path="about" element={<About />} />
++          <Route path="resume" element={<Resume />} />
++
++          {/* Using path="*"" means "match anything", so this route
++                acts like a catch-all for URLs that we don't have explicit
++                routes for. */}
++          <Route path="*" element={<NoMatch />} />
++        </Route>
++      </Routes>
++    </div>
+   );
+ }
+ 
+-export default App;
+\ No newline at end of file
++function NoMatch() {
++  return (
++    <div>
++      <h2>Nothing to see here!</h2>
++      <p>
++        <Link to="/">Go to the home page</Link>
++      </p>
++    </div>
++  );
++}
+\ No newline at end of file
+diff --git a/src/components/Layout.js b/src/components/Layout.js
+new file mode 100644
+index 0000000..898cfbb
+--- /dev/null
++++ b/src/components/Layout.js
+@@ -0,0 +1,31 @@
++import * as React from "react";
++import { Outlet } from "react-router-dom";
++
++import Navigation from "./Navigation";
++import Logo from "./Logo";
++import Footer from "./Footer";
++
++export default function Layout() {
++    return (
++        <div>
++            <nav className="navbar navbar-expand-lg bg-body-tertiary">
++                <div className="container-fluid">
++                    <Logo />
++                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
++                        <span className="navbar-toggler-icon"></span>
++                    </button>
++                    <Navigation />
++                </div>
++            </nav>
++
++            <hr />
++
++            {/* An <Outlet> renders whatever child route is currently active,
++          so you can think about this <Outlet> as a placeholder for
++          the child routes we defined above. */}
++            <Outlet />
++
++            <Footer />
++        </div>
++    );
++}
+\ No newline at end of file
+diff --git a/src/components/Navigation.js b/src/components/Navigation.js
+index 4be6a23..42531b8 100644
+--- a/src/components/Navigation.js
++++ b/src/components/Navigation.js
+@@ -1,13 +1,22 @@
+ import React from 'react';
++import { Link } from "react-router-dom";
+ 
+ function Navigation() {
+     return (
+         <div className="collapse navbar-collapse" id="navbarSupportedContent">
+             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+-                <li className="nav-item"><a className="nav-link" href="/">About me</a></li>
+-                <li className="nav-item"><a className="nav-link" href="/portfolio">Portfolio</a></li>
+-                <li className="nav-item"><a className="nav-link" href="/contact">Contact</a></li>
+-                <li className="nav-item"><a className="nav-link" href="/resume">Resume</a></li>
++                <li className="nav-item">
++                    <Link className="nav-link" to="/">Home</Link>
++                </li>
++                <li className="nav-item">
++                    <Link className="nav-link" to="/portfolio">Portfolio</Link>
++                </li>
++                <li className="nav-item">
++                    <Link className="nav-link" to="/contact">Contact</Link>
++                </li>
++                <li className="nav-item">
++                    <Link className="nav-link" to="/resume">Resume</Link>
++                </li>
+             </ul>
+         </div>
+     )
+diff --git a/src/custom.scss b/src/custom.scss
+index 052d9ef..3b49d82 100644
+--- a/src/custom.scss
++++ b/src/custom.scss
+@@ -1,5 +1,5 @@
+ // Override default variables before the import
+-$body-bg: rgb(7, 121, 49);
++$body-bg: rgb(121, 156, 134);
+ 
+ // Import Bootstrap and its default variables
+ @import '~bootstrap/scss/bootstrap.scss';
+\ No newline at end of file
+diff --git a/src/index.js b/src/index.js
+index 789d15f..738949a 100644
+--- a/src/index.js
++++ b/src/index.js
+@@ -3,11 +3,14 @@ import React from 'react';
+ import ReactDOM from 'react-dom/client';
+ import App from './App';
+ import reportWebVitals from './reportWebVitals';
++import { BrowserRouter } from "react-router-dom";
+ 
+ const root = ReactDOM.createRoot(document.getElementById('root'));
+ root.render(
+   <React.StrictMode>
+-    <App />
++    <BrowserRouter>
++      <App />
++    </BrowserRouter>
+   </React.StrictMode>
+ );
+ 
+diff --git a/src/routes/about.js b/src/routes/about.js
+index 28127f5..6613e72 100644
+--- a/src/routes/about.js
++++ b/src/routes/about.js
+@@ -1,14 +1,10 @@
+ import React from 'react';
+-import Header from '../components/Header';
+-import Footer from '../components/Footer';
+ 
+ function About() {
+     return (
+         <div>
+-            <Header />
+             <h1>About Me</h1>
+             <p>Lorem ipsum</p>
+-            <Footer />
+         </div>
+     )
+ }
+diff --git a/src/routes/contact.js b/src/routes/contact.js
+index 0ee584a..07f255d 100644
+--- a/src/routes/contact.js
++++ b/src/routes/contact.js
+@@ -1,51 +1,47 @@
+ import React from "react";
+-import Header from "../components/Header";
+-import Footer from "../components/Footer";
+ 
+ function Contact() {
+   return (
+     <div>
+-      <Header />
+       <center>
+-      <h1>Contact</h1>
+-      <div className="form-group">
+-        <label for="formGroupExampleInput">Name</label>
+-        <div
+-          type="text"
+-          className="form-control"
+-          id="formGroupExampleInput"
+-          placeholder="Example input"
+-          
+-        ></div>
+-      </div>
+-      <div className="mb-3">
+-        <label for="exampleFormControlInput1" className="form-label">
+-          Email address
+-        </label>
+-        <div
+-          type="email"
+-          className="form-control"
+-          id="exampleFormControlInput1"
+-          placeholder="name@example.com"
+-        ></div>
+-      </div>
+-      <div className="mb-3">
+-        <label for="exampleFormControlTextarea1" className="form-label">
+-          Message
+-        </label>
+-        <textarea
+-          className="form-control"
+-          id="exampleFormControlTextarea1"
+-          rows="3"
+-        ></textarea>
+-      </div>
+-      <div className="col-12">
+-        <button className="btn btn-primary" type="submit">
+-          Submit
+-        </button>
+-      </div>
++        <h1>Contact</h1>
++        <div className="form-group">
++          <label for="formGroupExampleInput">Name</label>
++          <div
++            type="text"
++            className="form-control"
++            id="formGroupExampleInput"
++            placeholder="Example input"
++
++          ></div>
++        </div>
++        <div className="mb-3">
++          <label for="exampleFormControlInput1" className="form-label">
++            Email address
++          </label>
++          <div
++            type="email"
++            className="form-control"
++            id="exampleFormControlInput1"
++            placeholder="name@example.com"
++          ></div>
++        </div>
++        <div className="mb-3">
++          <label for="exampleFormControlTextarea1" className="form-label">
++            Message
++          </label>
++          <textarea
++            className="form-control"
++            id="exampleFormControlTextarea1"
++            rows="3"
++          ></textarea>
++        </div>
++        <div className="col-12">
++          <button className="btn btn-primary" type="submit">
++            Submit
++          </button>
++        </div>
+       </center>
+-      <Footer />
+     </div>
+   );
+ }
+diff --git a/src/routes/portfolio.js b/src/routes/portfolio.js
+index 433c0dc..e2511e6 100644
+--- a/src/routes/portfolio.js
++++ b/src/routes/portfolio.js
+@@ -1,12 +1,10 @@
+ import React from "react";
+-import Header from "../components/Header";
+-import Footer from "../components/Footer";
++
+ import Project from "../components/Project";
+ 
+ function Portfolio() {
+   return (
+     <div>
+-      <Header />
+       <h1>Portfolio</h1>
+       <div className="card-group">
+         <Project
+@@ -36,7 +34,7 @@ function Portfolio() {
+           image="https://github.com/druharo/WEATHERAPP/raw/main/weatherapp.png"
+           github="https://github.com/druharo/WEATHERAPP"
+         />
+-        
++
+         <Project
+           name="go-aware"
+           image="https://github.com/Nwsheats/Go-Aware/raw/main/assets/map-dashboard.png"
+@@ -44,7 +42,6 @@ function Portfolio() {
+           deployed="https://go-aware.herokuapp.com/"
+         />
+       </div>
+-      <Footer />
+     </div>
+   );
+ }
+diff --git a/src/routes/resume.js b/src/routes/resume.js
+index 008539e..c6b7377 100644
+--- a/src/routes/resume.js
++++ b/src/routes/resume.js
+@@ -1,14 +1,10 @@
+ import React from 'react';
+-import Header from '../components/Header';
+-import Footer from '../components/Footer';
+ 
+ function Resume() {
+     return (
+         <div>
+-            <Header />
+             <h1>resume</h1>
+             <p>Lorem ipsum</p>
+-            <Footer />
+         </div>
+     )
+ }
