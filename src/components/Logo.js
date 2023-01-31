@@ -1,7 +1,5 @@
 import React from 'react';
 // Assuming logo.png is in the same folder as JS file
-import logo from './myPhoto.jpg';
-
 
 function Logo() {
     return (

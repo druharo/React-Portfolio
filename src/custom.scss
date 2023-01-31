@@ -3,3 +3,10 @@ $body-bg: rgb(121, 156, 134);
 
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
+
+$headings-margin-bottom:      $spacer * .5;
+$headings-font-family:        null;
+$headings-font-style:         null;
+$headings-font-weight:        500;
+$headings-line-height:        1.2;
+$headings-color:              null;
