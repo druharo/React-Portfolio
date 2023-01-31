@@ -8,39 +8,39 @@ function Contact() {
       <Header />
       <center>
       <h1>Contact</h1>
-      <div class="form-group">
+      <div className="form-group">
         <label for="formGroupExampleInput">Name</label>
         <div
           type="text"
-          class="form-control"
+          className="form-control"
           id="formGroupExampleInput"
           placeholder="Example input"
           
         ></div>
       </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">
+      <div className="mb-3">
+        <label for="exampleFormControlInput1" className="form-label">
           Email address
         </label>
         <div
           type="email"
-          class="form-control"
+          className="form-control"
           id="exampleFormControlInput1"
           placeholder="name@example.com"
         ></div>
       </div>
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">
+      <div className="mb-3">
+        <label for="exampleFormControlTextarea1" className="form-label">
           Message
         </label>
         <textarea
-          class="form-control"
+          className="form-control"
           id="exampleFormControlTextarea1"
           rows="3"
         ></textarea>
       </div>
-      <div class="col-12">
-        <button class="btn btn-primary" type="submit">
+      <div className="col-12">
+        <button className="btn btn-primary" type="submit">
           Submit
         </button>
       </div>

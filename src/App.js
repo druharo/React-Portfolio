@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  createHashRouter,
+  createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 
@@ -11,7 +11,7 @@ import Resume from "./routes/resume";
 
 
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <About />,

@@ -8,7 +8,7 @@ function Portfolio() {
     <div>
       <Header />
       <h1>Portfolio</h1>
-      <div class="card-group">
+      <div className="card-group">
         <Project
           name="note-taker"
           image="https://github.com/druharo/note-taker/raw/main/utils/noteTaker.png"

@@ -4,7 +4,7 @@ import React from 'react';
 
 function Logo() {
     return (
-        <a class="navbar-brand" href="/">
+        <a className="navbar-brand" href="/">
             <img src="/logo192.png" alt="Bootstrap" width="30" height="24" />
         </a>
     )
