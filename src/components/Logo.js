@@ -1,11 +1,13 @@
 import React from 'react';
-// import logo from './logo.svg';
+// Assuming logo.png is in the same folder as JS file
+import logo from './myPhoto.jpg';
 
 
 function Logo() {
     return (
         <a className="navbar-brand" href="/">
-            <img src="/logo192.png" alt="Bootstrap" width="30" height="24" />
+            Denis Ruharo
+            {/* <img src={logo} alt="Denis Ruharo" width="30" height="24" /> */}
         </a>
     )
 }

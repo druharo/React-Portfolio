@@ -3,28 +3,28 @@ import React from "react";
 function Contact() {
   return (
     <div>
-      <center>
+    
         <h1>Contact</h1>
         <div className="form-group">
           <label for="formGroupExampleInput">Name</label>
-          <div
+          <input
             type="text"
             className="form-control"
             id="formGroupExampleInput"
             placeholder="Example input"
 
-          ></div>
+          ></input>
         </div>
         <div className="mb-3">
           <label for="exampleFormControlInput1" className="form-label">
             Email address
           </label>
-          <div
+          <input
             type="email"
             className="form-control"
             id="exampleFormControlInput1"
             placeholder="name@example.com"
-          ></div>
+          ></input>
         </div>
         <div className="mb-3">
           <label for="exampleFormControlTextarea1" className="form-label">
@@ -41,7 +41,6 @@ function Contact() {
             Submit
           </button>
         </div>
-      </center>
     </div>
   );
 }

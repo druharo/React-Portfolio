@@ -23,16 +23,19 @@ function Portfolio() {
           name="team-profile generator"
           image="https://github.com/druharo/team-profile-generator/raw/main/utils/teamProfileImage.png"
           github="https://github.com/druharo/team-profile-generator/raw/main/utils/teamProfileImage.png"
+          Deployed="https://github.com/druharo/team-profile-generator/raw/main/utils/teamProfileImage.png"
         />
         <Project
           name="super-search"
           image="https://github.com/llyruss/SuperSearch/raw/main/Assets/css/results-screenshot.png"
           github="https://github.com/llyruss/SuperSearch"
+          Deployed="https://github.com/llyruss/SuperSearch"
         />
         <Project
           name="weather-app"
           image="https://github.com/druharo/WEATHERAPP/raw/main/weatherapp.png"
           github="https://github.com/druharo/WEATHERAPP"
+          Deployed="https://github.com/druharo/WEATHERAPP"
         />
 
         <Project
